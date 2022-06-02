@@ -29,7 +29,7 @@ public class User {
 	private String securityAnswer;
 	private String role;
 
-	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
 	@JoinColumn(name="user_id")
 	private Set<VersionHistory> listOfArticleIdsPublishedByUser;
 	
@@ -129,5 +129,30 @@ public class User {
 				+ securityQues + ", role=" + role + ", listOfArticleIdsPublishedByUser="
 				+ listOfArticleIdsPublishedByUser + "]";
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(listOfArticleIdsPublishedByUser, password, role, securityAnswer, securityQues, userid,
+				username);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(listOfArticleIdsPublishedByUser, other.listOfArticleIdsPublishedByUser)
+				&& Objects.equals(password, other.password) && Objects.equals(role, other.role)
+				&& Objects.equals(securityAnswer, other.securityAnswer)
+				&& Objects.equals(securityQues, other.securityQues) && Objects.equals(userid, other.userid)
+				&& Objects.equals(username, other.username);
+	}
+	
 
 }
