@@ -119,10 +119,9 @@ public class Articles {
 				+ ", status=" + status + "]";
 	}
 
-	public Articles(Long articleId, String articleNumber, Integer versionNumber, String title, String content,
+	public Articles(String articleNumber, Integer versionNumber, String title, String content,
 			LocalDateTime publishedDate, String status) {
 		super();
-		this.articleId = articleId;
 		this.articleNumber = articleNumber;
 		this.versionNumber = versionNumber;
 		this.title = title;

@@ -26,23 +26,35 @@ public class User {
 	private String username;
 	private String password;
 	private String securityQues;
+	private String securityAnswer;
 	private String role;
-	
 
 	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="user_id")
-	private Set<Articles> listOfArticleIdsPublishedByUser;
+	private Set<VersionHistory> listOfArticleIdsPublishedByUser;
 	
 	
-	public User(Long userid, String username, String password, String securityQues, String role,
-			Set<Articles> listOfArticleIdsPublishedByUser) {
+	
+
+	public User( String username, String password, String securityQues, String securityAnswer, String role,
+			Set<VersionHistory> listOfArticleIdsPublishedByUser) {
 		super();
-		this.userid = userid;
 		this.username = username;
 		this.password = password;
 		this.securityQues = securityQues;
+		this.securityAnswer = securityAnswer;
 		this.role = role;
 		this.listOfArticleIdsPublishedByUser = listOfArticleIdsPublishedByUser;
+	}
+
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 
 
@@ -96,12 +108,12 @@ public class User {
 	}
 
 
-	public Set<Articles> getListOfArticleIdsPublishedByUser() {
+	public Set<VersionHistory> getListOfArticleIdsPublishedByUser() {
 		return listOfArticleIdsPublishedByUser;
 	}
 
 
-	public void setListOfArticleIdsPublishedByUser(Set<Articles> listOfArticleIdsPublishedByUser) {
+	public void setListOfArticleIdsPublishedByUser(Set<VersionHistory> listOfArticleIdsPublishedByUser) {
 		this.listOfArticleIdsPublishedByUser = listOfArticleIdsPublishedByUser;
 	}
 
