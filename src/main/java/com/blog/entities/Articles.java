@@ -32,8 +32,20 @@ public class Articles {
 	private LocalDateTime publishedDate;
 	private String status;
 	
+	@ManyToOne
+	@JoinColumn(name="article_set_version_id")
+	private VersionHistory versionHistory;
+	
 	public Articles() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public VersionHistory getVersionHistory() {
+		return versionHistory;
+	}
+
+	public void setVersionHistory(VersionHistory versionHistory) {
+		this.versionHistory = versionHistory;
 	}
 
 	public Long getArticleId() {
